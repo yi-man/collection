@@ -4,6 +4,7 @@
 
 /*
 * jquery 的实现
+* 写法比较原始
 * */
 $('#toggle-5days-btn').click(function(){
   var $downicon = $(this).find('.downIcon');
