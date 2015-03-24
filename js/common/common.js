@@ -66,3 +66,16 @@ function  newTypeOf(o){
         return s.match(/\[object (.*?)\]/)[1].toLowerCase();
 };
 
+
+/*
+* for-in循环会同时枚举非继承属性和从原型对象继承的属性，如果有，则立即返回false，否则默认返回true。
+* 将name分开定义很容易迷惑人
+*/
+function isEmptyObject(obj) {
+    var name;
+    for (name in obj) {
+        return false;
+    }
+    return true;
+}
+

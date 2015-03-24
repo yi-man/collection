@@ -60,18 +60,4 @@ var a = [10, 2, 4, 15, 9];
 Math.max.apply(null, a)
 // 15
 
-/*
-* 获取所有属性
-* for...in 获取的是可枚举属性
-* */
 
-function inheritedPropertyNames(obj) {
-        var props = {};
-        while(obj) {
-            Object.getOwnPropertyNames(obj).forEach(function(p) {
-                props[p] = true;
-            });
-            obj = Object.getPrototypeOf(obj);
-        }
-        return Object.getOwnPropertyNames(props);
- }
