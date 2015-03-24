@@ -45,7 +45,7 @@ Array.prototype.sum = function (){
 };
 [3,4,5,6,10].sum(); //28
 
-/*
+/* 
 * 正则分隔符
 * */
 "aaa*a*".split(/a*/)
