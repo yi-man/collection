@@ -79,3 +79,19 @@ function isEmptyObject(obj) {
     return true;
 }
 
+
+/*
+ * 解决 浏览器的兼容问题
+ */
+var pfx = ["webkit", "moz", "MS", "o", ""];
+
+function PrefixedEvent(element, type, callback) {
+  for (var p = 0; p < pfx.length; p++) {
+    if (!pfx[p]) type = type.toLowerCase();
+    element.addEventListener(pfx[p]+type, callback, false);
+  }
+}
+PrefixedEvent(anim, "AnimationStart", AnimationListener);
+PrefixedEvent(anim, "AnimationIteration", AnimationListener);
+PrefixedEvent(anim, "AnimationEnd", AnimationListener);
+
