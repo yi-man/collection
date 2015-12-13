@@ -23,7 +23,7 @@ var type = function (o){
     };
 });
 type.isObject({}); // true
-type.isNumber(NaN); // false
+type.isNumber(NaN); // false  `
 type.isElement(document.createElement('div')); // true
 type.isRegExp(/abc/); // true
 
