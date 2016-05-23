@@ -106,6 +106,11 @@ var appConfig = {
   goFinanceRecord: {
     'android': 'goFinanceRecord',
     'ios': '/index.php/Mobile/Act/goFinanceRecord'
+  },
+  //好友推荐
+  goRecommend: {
+    'android': 'goInvite',
+    'ios': '/index.php/Mobile/Act/goRecommend'
   }
 
 };
@@ -122,7 +127,7 @@ function app(opt) {
       shareUrl: opt.shareUrl||''
     },
     _goto: function (config, content) {
-      if(this.device === 2){
+      if(this.device == 2){
         var api = config['android'];
         if(window.mainweb && typeof window['mainweb'][api] === 'function'){
           if(content){
@@ -130,7 +135,7 @@ function app(opt) {
           }
           window['mainweb'][api]();
         }
-      }else if(this.device === 1){
+      }else if(this.device == 1){
         var url = config['ios'];
         if(content){
           url = url + '?content=' + content;
@@ -141,7 +146,7 @@ function app(opt) {
     },
     goShare: function(share){
       alert(this.share.shareMessage)
-      if(this.device === 2){
+      if(this.device == 2){
         var api = appConfig.goShare.android;
         if(window.mainweb && typeof window['mainweb'][api] === 'function'){
           window['mainweb'][api]( this.share.shareMessage, this.share.shareImg, this.share.shareUrl, this.share.shareTitle);
@@ -169,9 +174,11 @@ function app(opt) {
   };
   for(var config in appConfig){
     if(config!=='goShare'){
-      retObj[config] = function(content){
-        this._goto(appConfig[config], content);
-      }
+      (function(config){
+        retObj[config] = function(content){
+          this._goto(appConfig[config], content);
+        }
+      })(config);
     }
   }
 
@@ -264,61 +271,6 @@ function weixin(opt){
   }
 }
 
-function Activity(opt){
-  var self = this;
-  opt = type.isObject(opt)?opt:{};
-
-  this.device = parseInt(opt.device||4);   //device==1 ios,2 android, 4 默认
-  this.$mask = opt.$mask || $('.mask');
-  this.$box = opt.$box || $('.box');
-
-  var plugins = ['app', 'box'];
-  if(opt.plugins && type.isArray(opt.plugins)){
-    this.plugins = opt.plugins.concat(plugins);
-  }else{
-    this.plugins = plugins;
-  }
-
-  function _initPlugin(arr){
-    if(!type.isArray(arr) || arr.length === 0) return;
-    var len = arr.length;
-    for(var i=0; i<len; i++){
-      var plugin = arr[i];
-      var p_arr = plugin.split(':');
-
-      var fn = window[p_arr[0]];
-      p_arr.splice(0, 1);
-
-      if(typeof fn === "function"){
-        if(p_arr.length>0){
-          self[plugin] = new fn(p_arr);
-        }else{
-          self[plugin] = new fn(opt);
-        }
-      }
-    }
-  }
-
-  this.add = function(plugin){
-    var arr = [];
-    if(type.isString(plugin)){
-      arr.push(plugin);
-    }else{
-      arr = arr.concat(plugin);
-    }
-    _initPlugin(arr);
-  }
-
-
-  if(type.isArray(this.plugins) && this.plugins.length > 0){
-    this.add(this.plugins);
-  }
-
-}
-
-
-
-
 function form(args){
   var self = this;
   var $form = args[0] ? $('#'+args[0]) : $('form').eq(0);
@@ -406,6 +358,115 @@ form.prototype.valid = function($elem, $err){
 
   return true;
 }
+
+function Activity(opt){
+  var self = this;
+  opt = type.isObject(opt)?opt:{};
+
+  this.device = parseInt(opt.device||4);   //device==1 ios,2 android, 4 默认
+  this.$mask = opt.$mask || $('.mask');
+  this.$box = opt.$box || $('.box');
+
+  var plugins = ['app', 'box'];
+  if(opt.plugins && type.isArray(opt.plugins)){
+    this.plugins = opt.plugins.concat(plugins);
+  }else{
+    this.plugins = plugins;
+  }
+
+  function _initPlugin(arr){
+    if(!type.isArray(arr) || arr.length === 0) return;
+    var len = arr.length;
+    for(var i=0; i<len; i++){
+      var plugin = arr[i];
+      var p_arr = plugin.split(':');
+
+      var fn = window[p_arr[0]];
+      p_arr.splice(0, 1);
+
+      if(typeof fn === "function"){
+        if(p_arr.length>0){
+          self[plugin] = new fn(p_arr);
+        }else{
+          self[plugin] = new fn(opt);
+        }
+      }
+    }
+  }
+
+  this.add = function(plugin){
+    var arr = [];
+    if(type.isString(plugin)){
+      arr.push(plugin);
+    }else{
+      arr = arr.concat(plugin);
+    }
+    _initPlugin(arr);
+  }
+
+
+  if(type.isArray(this.plugins) && this.plugins.length > 0){
+    this.add(this.plugins);
+  }
+
+}
+
+
+
+
+function Act(opt){
+  var self = this;
+  opt = type.isObject(opt)?opt:{};
+
+  this.device = parseInt(opt.device||4);   //device==1 ios,2 android, 4 默认
+  this.$mask = opt.$mask || $('.mask');
+  this.$box = opt.$box || $('.box');
+
+  var plugins = ['app', 'box'];
+  if(opt.plugins && type.isArray(opt.plugins)){
+    this.plugins = opt.plugins.concat(plugins);
+  }else{
+    this.plugins = plugins;
+  }
+
+  if(type.isArray(this.plugins) && this.plugins.length > 0){
+    self.add(this.plugins);
+  }
+
+}
+
+Act.prototype.initPlugin = function(arr){
+  if(!type.isArray(arr) || arr.length === 0) return;
+  var len = arr.length;
+  for(var i=0; i<len; i++){
+    var plugin = arr[i];
+    var p_arr = plugin.split(':');
+
+    var fn = window[p_arr[0]];
+    p_arr.splice(0, 1);
+
+    if(typeof fn === "function"){
+      if(p_arr.length>0){
+        this[plugin] = new fn(p_arr);
+      }else{
+        this[plugin] = new fn(opt);
+      }
+    }
+  }
+}
+
+
+Act.prototype.add = function(plugin){
+  var arr = [];
+  if(type.isString(plugin)){
+    arr.push(plugin);
+  }else{
+    arr = arr.concat(plugin);
+  }
+  this.initPlugin(arr);
+}
+
+
 
 
 
