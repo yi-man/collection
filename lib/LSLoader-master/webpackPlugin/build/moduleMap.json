@@ -1,0 +1,17 @@
+{
+  "detail.js": {
+    "vueminjs": 1,
+    "commoncss": 1
+  },
+  "index.js": {
+    "vueminjs": 1,
+    "listvue": 1,
+    "commoncss": 1
+  },
+  "list.js": {
+    "vueminjs": 1,
+    "listvue": 1,
+    "alibjs": 1,
+    "commoncss": 1
+  }
+}

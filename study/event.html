@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src=""></script>
+</head>
+<body>
+
+<a href="http://www.baidu.com" id="a">这是一个a标签</a>
+<div id="test">测试点击</div>
+
+<script>
+  // 事件数组
+//  var events = 'touchstart touchend mousedown mouseup click'.split(' ');
+//  var n = 0;
+//  // 开启定时器，每两秒钟为a标签触发相应事件
+//  var timer = setInterval(function(){
+//    var event = new Event(events[n]);
+//    document.getElementById('a').dispatchEvent(event); // 触发事件。
+//    console.log(event.type);
+//    n++;
+//    if (n == events.length) {
+//      clearInterval(timer);
+//    }
+//  },2000);
+
+
+  var event = new Event('hehe',{"bubbles":true, "cancelable":false})
+  var elm = document.getElementById('a')
+
+  elm.addEventListener('hehe', function (e) {
+//    alert(11)
+  })
+  elm.dispatchEvent(event); // 触发事件。
+
+</script>
+</body>
+</html>

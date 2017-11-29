@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html manifest="demo.appcache">
+<head>
+  <meta charset="UTF-8">
+  <title>manifest</title>
+</head>
+<body>
+<img src="ps.jpg" alt="" style="width:1000px;">
+<!--<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>-->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+  window.applicationCache.addEventListener("updateready", function(){
+    window.location.reload();
+  });
+</script>
+</body>
+</html>

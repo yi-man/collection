@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="mvvm.js"></script>
+<script>
+  var callback = function(newVal, oldVal){
+    alert('新值：' + newVal + '----' + '旧值：' + oldVal);
+  };
+
+  var data = {
+    a: 200,
+    level1: {
+      b: 'str',
+      c: [1, 2, 3],
+      level2: {
+        d: 90
+      }
+    }
+  }
+
+  var j = new Jsonob(data, callback);
+
+//  data.a = 250;
+  data.level1.c.push(4)
+//  data.level1.b = 'sss';
+//  data.level1.level2.d = 'msn';
+</script>
+
+</body>
+</html>

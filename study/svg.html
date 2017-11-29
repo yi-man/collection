@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  var str='SET_LOAN_LIST_HAHA'
+  var reg=/_(\w)/g
+
+  str=str.toLowerCase().replace(reg,function($0,$1){
+    return $1.toUpperCase();
+  });
+  console.log(str)
+</script>
+</body>
+</html>

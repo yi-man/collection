@@ -1,0 +1,8 @@
+活动模块静态文件
+
+预计实现的功能
+1. tinypng 压缩文件   已实现, 压缩/static目录下jpg、png,每月500数量,imgMd5Map保证不重复压缩
+2. 静态基础库的建立 sass引入?
+3. 引入seajs
+4. 各部分模块化,activity.js 拆分
+5. 动态添加header和footer,动态拼接文件

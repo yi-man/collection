@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>rest</title>
+</head>
+<body>
+<script>
+//  function callee (count) {
+//    count++
+//    if (count<10) {
+//      console.log(callee.caller + '----' + count)
+//      arguments.callee(count)
+//    }
+//  }
+//
+//  callee(1)
+
+
+  function sum (...numbers) {
+    return numbers.reduce((a, b) => a + b)
+  }
+
+  console.log(sum(...[1,2,3]))
+</script>
+</body>
+</html>

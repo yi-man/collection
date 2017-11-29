@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+  const url = 'http://localhost:8000/mobile2.public.banners?type=52&client=wap&jsoncallback=?'
+  const url2 = 'https://www.xinhehui.com/Mobile2/Public/banners?type=52&client=wap&jsoncallback=?'
+
+  $.getJSON(url, {
+    headers: {
+      Host: 'whole.com'
+    }
+  }).then(function (data) {
+    debugger
+    console.log(data)
+  }).catch(function(e){
+    console.log(e)
+  })
+</script>
+</body>
+</html>

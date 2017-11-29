@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="file" id="files" accept="image/gif,image/jpeg,image/jpg,image/png" multiple>
+<script>
+  var elem = document.getElementById('files');
+  elem.onchange = function (event) {
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      // 文件类型为 image 并且文件大小小于 200kb
+//      if(files[i].type.indexOf('image/') !== -1 && files[i].size < 204800){
+        console.log(files[i].name);
+//      }
+    }
+  }
+
+
+  var a = "哈喽 世界";
+  var b = btoa(encodeURIComponent(a));
+  var c = decodeURIComponent(atob(b));
+
+  console.log(b);     // JUU1JTkzJTg4JUU1JTk2JUJEJTIwJUU0JUI4JTk2JUU3JTk1JThD
+  console.log(c);     // 哈喽 世界
+</script>
+
+<!--下一段-->
+
+<input type="file" id="files1" accept="image/jpeg,image/jpg,image/png" multiple>
+<img src="blank.gif" id="preview">
+<script>
+  var elem = document.getElementById('files1'),
+    img = document.getElementById('preview');
+  elem.onchange = function () {
+    var files = elem.files,
+      reader = new FileReader();
+    if(files && files[0]){
+      reader.onload = function (ev) {
+        img.src = ev.target.result;
+      }
+      reader.readAsDataURL(files[0]);
+    }
+  }
+</script>
+
+</body>
+</html>

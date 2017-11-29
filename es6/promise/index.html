@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>promise</title>
+</head>
+<body>
+<script>
+  let pro = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      console.log('2s后。。。')
+      resolve(100)
+    },2000)
+  })
+
+  pro.then(function (val) {
+    console.log(val)
+    if (val < 90000) {
+      throw new Error('wo错了')
+    }
+
+    return val + 100
+  }).then(function (val) {
+    console.log(val)
+  }).catch(function (err) {
+    console.log(err)
+  })
+
+</script>
+</body>
+</html>

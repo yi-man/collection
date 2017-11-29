@@ -1,0 +1,24 @@
+{
+  "name": "yrzif",
+  "description": "Financing-Investment-Platform of UPG Cloud Financing Department",
+  "homepage": "https://www.yrz.cn/",
+  "version": "0.1.0",
+  "author": {
+    "name": "Front-End development team of UPG Cloud Financing Department"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://www.yrz.cn/"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-debug": "^2.1.2",
+    "gulp-if": "^2.0.1",
+    "gulp-tinypng-compress": "^1.2.1"
+  }
+}

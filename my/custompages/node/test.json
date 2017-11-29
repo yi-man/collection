@@ -1,0 +1,16 @@
+{
+  "header": true,
+  "footer": true,
+  "banner": {
+    "order": 1,
+    "bg": 3
+  },
+  "lottery": {
+    "type": 1,
+    "order": 2
+  },
+  "rules": {
+    "order": 3,
+    "bg": 3
+  }
+}

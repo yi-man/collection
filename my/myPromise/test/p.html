@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+Promise 同浏览器接口，控制台输出。
+<script src="../lib/promise.js"></script>
+<script>
+  var p = new Promise(function(resolve, reject){
+    setTimeout(function (){
+      resolve(1);
+    }, 100)
+
+  })
+    .then(function(data){
+      console.log(data);
+      return 3;
+    }).then(function(data){
+      console.log(data);
+      return 4;
+    }, function(err){
+      console.log(err);
+      return 4;
+    }).then(function(data){
+      console.log(data)
+      throw 2;
+    })
+//  console.log(p)
+</script>
+</body>
+</html>

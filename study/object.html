@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>object</title>
+  <!--<script src="../node_modules/jquery/dist/jquery.min.js"></script>-->
+  <script src="../node_modules/jquery/dist/jquery.slim.min.js"></script>
+</head>
+<body>
+
+<script>
+  var person = {
+    firstName: 'Jimmy',
+    lastName: 'Smith',
+    get fullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    set fullName (name) {
+      var words = name.toString().split(' ');
+      this.firstName = words[0] || '';
+      this.lastName = words[1] || '';
+    }
+  }
+
+  person.fullName = 'Jack Franklin';
+  console.log(person.firstName); // Jack
+  console.log(person.lastName) // Franklin
+
+  var obj = {a: 100}
+  function changeObj (obj) {
+    obj.a = 200
+  }
+  changeObj(obj)
+  console.log(obj)
+
+</script>
+</body>
+</html>

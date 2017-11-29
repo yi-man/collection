@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <script async="async" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <%
+  var cssArr = htmlWebpackPlugin.files.css;
+  var jsArr = htmlWebpackPlugin.files.js.filter(function(item) {
+  return !/icons/.test(item)
+  })
+  %>
+  <script type="text/javascript">
+    window.parseStatic = {
+      cssArr: <%= JSON.stringify(cssArr) %>,
+      jsArr: <%= JSON.stringify(jsArr) %>,
+      cssContent: {
+      loaded: false
+    },
+    jsContent: {
+      loaded: false,
+        arr: []
+    },
+    ajax: function (url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          callback(xhr.responseText)
+        }
+      };
+      xhr.open("GET", url);
+      xhr.send(null)
+    },
+    transferLocalKey: function (str) {
+      return str.match(/[^\/]*$/)[0]
+    },
+    createDom: function (str, isCss) {
+      var dom = document.createElement(isCss ? 'style' : 'script')
+      dom.innerHTML = str
+      return dom
+    },
+    appendDom: function (isCss, arr) {
+      // 创建代码片段，方便所以内容一起加进来减少reflow
+      var docFrame = document.createDocumentFragment(),
+        parentDom = document[isCss ? 'head' : 'body'],
+        len = arr.length;
+      for (var i = 0; i < len; i++) {
+        docFrame.appendChild(arr[i])
+      }
+      parentDom.appendChild(docFrame)
+    },
+
+    delLocOldData: function () {
+      var self = this,
+        newArr = [],
+        delArr = [];
+
+      appendKeys(self.cssArr)
+      appendKeys(self.jsArr)
+
+      function appendKeys (arr) {
+        var len = arr.length
+        for (var i = 0; i < len; i++) {
+          newArr.push(self.transferLocalKey(arr[i]))
+        }
+      }
+
+      newArr.forEach(function (k) {
+        var kArr = k.split('.'),
+          loc = window.localStorage,
+          len = loc.length;
+
+        for (var i = 0; i < len; i++) {
+          var locKey = loc.key(i);
+          var locKArr = locKey.split('.');
+          // localStorage里的值跟当前值不等，且前缀，后缀一致则删除
+          if (k != locKey && kArr[0] == locKArr[0] && kArr[2] == locKArr[2]) {
+            delArr.push(locKey)
+          }
+        }
+      })
+
+      delArr.forEach(function (key) {
+        window.localStorage.removeItem(key)
+      })
+    },
+    // 处理/渲染数据，要保证arr元素的顺序
+    render: function (isCss) {
+      var self = this,
+        arr = isCss ? self.cssArr : self.jsArr,
+        len = arr.length,
+        curCount = len, // 用于判断arr内容是否loadding完
+        loc = window.localStorage,
+        targetArr = Array(len);
+
+      arr.forEach(function (url, index) {
+        // 去掉路径，只保留文件名
+        var locKey = self.transferLocalKey(url)
+
+        var locVal = loc[locKey]
+        // 内存里有
+        if (locVal) {
+          callBack(index, locVal)
+          // 内存没
+        } else {
+          // 采用闭包把当前index, locKey传进去
+          // 以保证值的准确行
+          (function (i, k) {
+            self.ajax(url, function (str) {
+              callBack(i, str, k);
+            })
+          }(index, locKey));
+        }
+      })
+
+      // 操作完成判断是否当前元素都已经循环完
+      function callBack (i, val, locKey) {
+        // 把取到的值按顺序放到targetArr数组中
+        targetArr[i] = self.createDom(val, isCss)
+        // 有locKey说明是ajax取到的值，要把他放到localStorage
+        if (locKey) {
+          loc[locKey] = val
+        }
+
+        curCount--
+        if (!curCount) {
+          self.complete(isCss, targetArr)
+        }
+      }
+    },
+    complete: function (isCss, arr) {
+      var self = this,
+        jsContent = self.jsContent,
+        cssContent = self.cssContent,
+        finish = false;
+      if (isCss) {
+        self.cssContent.loaded = true
+        //添加css
+        self.appendDom(true, arr)
+        //js已加载完成, 再添加js
+        if (self.jsContent.loaded) {
+          self.appendDom(false, self.jsContent.arr)
+          finish = true
+        }
+      } else { //js完成
+        self.jsContent.loaded = true
+        //css未加载完成
+        if (!self.cssContent.loaded) {
+          self.jsContent.arr = arr
+        } else { //css加载完成, 添加js,整个过程结束
+          self.appendDom(false, arr)
+          finish = true
+        }
+      }
+
+      if (finish) {
+        self.delLocOldData();
+        delete window.parseStatic
+      }
+
+    },
+
+    // 渲染css
+    renderCss: function () {
+      this.render(true)
+    },
+    renderJs: function () {
+      this.render()
+    }
+    }
+
+    parseStatic.renderCss()
+  </script>
+  <style>
+    html{height: 100%;}
+    body{height: 100%;padding:0;margin:0;}
+    #loading{background:red;width:100%;height:100%;}
+    #app{display: none;}
+  </style>
+</head>
+<body>
+<div id=loading>加载中</div>
+<div id=app></div>
+
+<script>parseStatic.renderJs()</script>
+</body>
+</html>

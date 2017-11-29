@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Demo</title>
+  <style type="text/css">
+    * { 
+      padding: 0;
+      margin: 0; 
+    }
+    html, body { 
+      width: 100%; 
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #main{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="main">
+  </div>
+  <script src="HandLock.js"></script>
+  <script>
+    var locker = new HandLock.Locker({
+      container: document.querySelector('#main'),
+      check: {
+        checked: function(res){
+          console.log(res);
+        }
+      }
+    });
+
+    locker.check('11121323');
+  </script>
+</body>
+</html>

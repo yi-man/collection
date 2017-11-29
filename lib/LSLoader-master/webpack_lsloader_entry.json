@@ -1,0 +1,17 @@
+{
+  "list": "./dev/webpack2/js/pages/list.js",
+  "detail": "./dev/webpack2/js/pages/detail.js",
+  "index": "./dev/webpack2/js/pages/index.js",
+  "vueminjs": [
+    "./dev/webpack2/js/lib/vue.min.js"
+  ],
+  "commoncss": [
+    "./dev/webpack2/css/common.css"
+  ],
+  "listvue": [
+    "./dev/webpack2/js/component/list.vue"
+  ],
+  "alibjs": [
+    "./dev/webpack2/js/lib/alib.js"
+  ]
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>customElements</title>
+</head>
+<body>
+<!--HTMLUnknownElement-->
+<my-element content="Custom Element">
+Hello
+</my-element>
+<script>
+  class MyElement extends HTMLElement {
+    get content() {
+      return this.getAttribute('content');
+    }
+
+    set content(val) {
+      this.setAttribute('content', val);
+    }
+  }
+
+  window.customElements.define('my-element', MyElement);
+
+  function customTag(tagName, fn){
+    Array
+      .from(document.getElementsByTagName(tagName))
+      .forEach(fn);
+  }
+
+  function myElementHandler(element) {
+    element.textContent = element.content;
+  }
+
+  customTag('my-element', myElementHandler);
+
+
+  var tabs = document.createElement('tabs');
+
+  tabs instanceof HTMLUnknownElement // true
+  tabs instanceof HTMLElement // true
+
+
+  var xTabs = document.createElement('x-tabs');
+
+  xTabs instanceof HTMLUnknownElement // false
+  xTabs instanceof HTMLElement // true
+
+</script>
+</body>
+</html>

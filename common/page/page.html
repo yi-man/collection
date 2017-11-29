@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>page</title>
+</head>
+<body>
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="page.js"></script>
+<script>
+  var page = new Page({
+    eles: {
+      body: 'body',
+      widgetDiv: ".left-widget div",
+      inputResize: '.input-resize',
+      pap: '.paper',
+      centerY: '.center-y',
+      centerBox: '.center-box',
+      lineX: '.line-x',
+      lineY: '.line-y',
+      lineXY: '.line-x .line-y',
+      widgetUl: '.left-widget ul',
+      hr: '.hr',
+      txt: '.input-group-btn button',
+      cus: '#paper-type-cus',
+      paperCusw: '#paper-cus-width',
+      paperCush: '#paper-cus-height',
+      hid: '#hidden',
+      showHtmlCls: '.showHtml',
+      showHtmlId: '#showHtml',
+      mainCon: '#mainCon',
+      rulerX: '.ruler-x',
+      numX: '.num-x',
+      rulerY: '.ruler-y',
+      numY: '.num-y',
+    },
+    events: {
+      'click #elm': 'clickCb'
+    }
+    ,
+    requests: {
+      sendCode: {
+        url: 'data.php',
+        params: {}
+        ,
+        cb: 'sendCodeCb'
+      }
+      ,
+      getCode: {
+        url: 'data.php',
+        params: {}
+        ,
+        cb: 'getCodeCb'
+      }
+    }
+    ,
+    ajaxAfter: {
+      'ajaxAfter': 'ajaxAfter'
+    }
+    ,
+    methods: {
+      //点击事件的this 是当前元素
+      clickCb: function (ctx, e) {
+        ctx.sendCode()
+      }
+      ,
+      ajaxAfter: function () {
+      }
+      ,
+      send: function (data) {
+        console.log(data)
+      }
+      ,
+      sendCodeCb: function (data) {
+        this.send(data)
+      }
+      ,
+      getCodeCb: function (data) {
+        this.send('xxwade' + data)
+      }
+    }
+  })
+  //  page.init()
+  console.log(page)
+  //  page.methods.sendCode()
+  //  page.getCode()
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+
+  var url = 'http://local.collection.com/Mobile2/Public/monthActivityBanner'
+  var pro = new Promise((resolve, reject)=>{
+                fetch(url).then((response)=>response.json()).then((responseData)=>{
+                  resolve(responseData)
+                }).catch((error)=>{
+                  reject(error)
+                })
+             }).then((responseData)=>{
+    console.log(responseData)
+  this.setState({
+    loadingPage: responseData.data[0].img.attach.url
+  })
+  })
+
+
+</script>
+</body>
+</html>

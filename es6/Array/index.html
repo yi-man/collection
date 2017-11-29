@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array</title>
+</head>
+<body>
+
+<script>
+  var path=['a', 'b']
+  var state={a:100, b:200}
+  path.reduce((state, key) => {
+    console.log(state)
+    return state[key], state
+  })
+
+  Array(3)  //[undefined, undefined, undefined]
+  Array.of(3)  //[3]
+
+  var arrLike = {
+    length: 4,
+    2: "foo"
+  };
+
+  Array.from(arrLike, function mapper (val, idx) {
+    if (typeof val == "string") {
+      return val.toUpperCase();
+    }
+    else {
+      return idx;
+    }
+  });
+  //of(..)和from(..)都使用它们被访问时的构造器来构建数组。所以如果你使用基本的Array.of(..)你将得到Array实例，但如果你使用MyCoolArray.of(..)，你将得到一个MyCoolArray实例。
+
+  [1,2,3,4,5].copyWithin( 3, 0, 1 );        // [1,2,3,1,5]
+  [1,2,3,4,5].copyWithin( 0, -2 );        // [4,5,3,4,5]
+
+  var a = [ null, null, null, null ].fill( 42, 1, 3 );
+  a;                                    // [null,42,42,null]
+
+
+  var a = [1,2,3,4,5];
+
+  a.find( function matcher(v){
+    return v == "2";
+  } );
+
+</script>
+</body>
+</html>
