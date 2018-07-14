@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>appendText</title>
+</head>
+<body>
+
+<script>
+  let count = 0
+  setInterval(function () {
+    let elm = document.createElement('div')
+    elm.innerText = count++
+    document.body.appendChild(elm)
+  }, 2000)
+</script>
+
+</body>
+</html>

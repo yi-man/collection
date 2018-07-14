@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dfs</title>
+</head>
+<body>
+<div class="root">
+  <div class="container">
+    <section class="sidebar">
+      <ul class="menu"></ul>
+    </section>
+    <section class="main">
+      <article class="post"></article>
+      <p class="copyright"></p>
+    </section>
+  </div>
+</div>
+
+<script>
+  const dfs = function (root) {
+    const children = Array.from(root.children) || []
+
+    printInfo(root)
+
+    children.forEach(function(child){
+      dfs(child)
+    })
+  }
+  const printInfo = (node) => {
+    console.log(node.tagName, `.${node.className}`);
+  };
+  const root =  document.querySelector('.root')
+  dfs(root)
+</script>
+</body>
+</html>

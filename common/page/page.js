@@ -79,7 +79,7 @@ var type = function (o) {
               event = arr[1],
               elem = arr[2]
 
-            $(document).on(event, elem, func.bind(this))
+            $(document).on(event, elem, func.bind(this, this))
           }
         }
       }

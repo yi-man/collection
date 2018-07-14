@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>rxjs first example</title>
+  <script src="https://unpkg.com/rxjs@6.2.1/bundles/rxjs.umd.js"></script>
+</head>
+
+<button>click</button>
+
+<body>
+  <script>
+
+    // var count = 0;
+    // var button = document.querySelector('button');
+    // button.addEventListener('click', () => console.log(`Clicked ${++count} times`));
+
+
+    const { Observable, Subject, ReplaySubject, from, of, range, fromEvent, operators } = rxjs;
+
+    const { throttleTime, scan, map } = operators
+
+    var button = document.querySelector('button');
+    // fromEvent(button, 'click')
+    //   .subscribe(() => console.log('Clicked!'));
+
+    fromEvent(button, 'click')
+      .pipe(
+        throttleTime(1000),
+        map(event => event.clientX),
+        scan((count, clientX) => count + clientX, 0)
+      )
+      .subscribe(count => console.log(`Clicked ${count}`));
+
+
+    // const { Observable, Subject, ReplaySubject, from, of, range } = rxjs;
+    // const { map, filter, switchMap } = rxjs.operators;
+
+    // range(1, 200)
+    //   .pipe(filter(x => x % 2 === 1), map(x => x + x))
+    //   .subscribe(x => console.log(x));
+
+
+  </script>
+</body>
+
+</html>

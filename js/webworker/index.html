@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  var worker = new Worker('worker.js');
+  worker.postMessage('Hello World');
+  // worker.postMessage({method: 'echo', args: ['Work']});
+
+  var uInt8Array = new Uint8Array(new ArrayBuffer(10));
+  for (var i = 0; i < uInt8Array.length; ++i) {
+    uInt8Array[i] = i * 2; // [0, 2, 4, 6, 8,...]
+  }
+  worker.postMessage({
+    cmd: 'unit',
+    msg: uInt8Array
+  });
+
+  worker.onmessage = function (event) {
+    console.log('Received message ' + event.data);
+    doSomething();
+  }
+
+
+  // worker.onerror(function (e) {
+  //   console.log([
+  //     'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
+  //   ].join(''));
+  // });
+  // 或者
+  worker.addEventListener('error', function (e) {
+    console.log([
+      'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
+    ].join(''));
+  });
+
+
+  function doSomething() {
+    // 执行任务
+    console.log('work done')
+    // worker.postMessage('Work done!');
+  }
+
+
+  // 主线程
+  // worker.terminate();
+
+
+</script>
+</body>
+</html>

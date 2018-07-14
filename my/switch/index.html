@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>switch</title>
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .mint-switch-input {
+      display: none;
+    }
+    .mint-switch * {
+      pointer-events: none;
+    }
+    .mint-switch {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      position: relative;
+    }
+    .mint-switch-core {
+      display: inline-block;
+      position: relative;
+      width: 52px;
+      height: 32px;
+      border: 1px solid #d9d9d9;
+      border-radius: 16px;
+      box-sizing: border-box;
+      background: #d9d9d9;
+    }
+
+    /*.mint-switch-core:before {*/
+      /*width: 50px;*/
+      /*height: 30px;*/
+      /*background-color: #fdfdfd;*/
+    /*}*/
+    .mint-switch-core:after {
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    .mint-switch-core:after,
+    .mint-switch-core:before {
+      content: " ";
+      top: 0;
+      left: 0;
+      position: absolute;
+      -webkit-transition: -webkit-transform .3s;
+      transition: -webkit-transform .3s;
+      transition: transform .3s;
+      transition: transform .3s,-webkit-transform .3s;
+      border-radius: 15px;
+    }
+
+    .mint-switch-label:empty {
+      margin-left: 0;
+    }
+    .mint-switch-label {
+      margin-left: 10px;
+      display: inline-block;
+    }
+
+    .mint-switch-input:checked + .mint-switch-core{
+      border-color:blue;
+      background-color:blue;
+    }
+    .mint-switch-input:checked + .mint-switch-core:before{
+      transform: scale(0);
+    }
+    .mint-switch-input:checked + .mint-switch-core:after{
+      transform: translateX(20px);
+    }
+  </style>
+</head>
+<body>
+<label class="mint-switch">
+  <input type="checkbox" class="mint-switch-input" checked>
+  <span class="mint-switch-core"></span>
+  <div class="mint-switch-label"></div>
+</label>
+
+
+<br>
+
+<div class="checklist">
+  <input type="checkbox" name="ttt">
+  <input type="checkbox" name="ttt">
+  <input type="checkbox" name="ttt">
+</div>
+</body>
+</html>

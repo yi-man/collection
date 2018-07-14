@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组最大乘积</title>
+</head>
+<body>
+
+
+<script>
+  var arr = [1,2, 0, -2, 4, 6, -1, 0, -1, 4, -3]
+
+  var maxObj = {
+    value: 0,
+    index: -1
+  }
+
+  for (var i=0; i < arr.length; i++) {
+    var result = 1
+
+    for (var j = i; j < arr.length; j++) {
+      console.log(j)
+      result *= arr[j]
+      if (result > maxObj.value) {
+        maxObj = {
+          value: result,
+          index: j
+        }
+      }
+    }
+    result = 1
+  }
+
+  console.log(maxObj)
+
+  
+//  function getMaxContinuousMultipleVal (array) {
+//    var splitObj = splitArray(array)
+//    var max = 0
+//
+//    Object.keys(splitObj).forEach(function (arr) {
+//      var negative = []
+//      for (var i = 0; i < arr.length; i++) {
+//        negative.push(arr[i])
+//      }
+//      if (negative.length % 2 === 0) {
+//        var val = arr.reduce((it1, it2) => it1 * it2)
+//        if (val > max) {
+//          max = val
+//        }
+//      } else {
+//
+//      }
+//    })
+//  }
+
+  function splitArray (array) {
+    var obj = {},
+      tempArr = [],
+      index = 0
+    for (var i = 0; i< array.length; i++) {
+      var item = array[i]
+      if (item !== 0) {
+        tempArr.push(item)
+      } else {
+        obj[index++] = tempArr
+        tempArr = []
+      }
+    }
+
+  }
+  
+</script>
+</body>
+</html>

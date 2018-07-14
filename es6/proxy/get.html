@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  var obj = new Page({
+    els: {
+      ele: '#ele'
+    },
+    methods: {
+      fn1 () {
+        console.log(this.els.ele)
+        console.log(this)
+      }
+    }
+  })
+
+  function Page (options) {
+    const self = this
+    const methods = options.methods || {}
+
+    self.els = options.els
+
+    for (var key in methods) {
+      if (methods.hasOwnProperty(key)) {
+        self[key] = methods[key].bind(self)
+      }
+    }
+  }
+
+  console.log(obj.fn1())
+
+  
+//  var proxy = new Proxy(obj, {
+//    get: function (target, property) {
+//      return target[property] || target['methods'][property].bind(target)
+//    }
+//  })
+//
+//  const fn1 = proxy.fn1
+//  fn1()
+</script>
+</body>
+</html>

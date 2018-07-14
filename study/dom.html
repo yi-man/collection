@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dom</title>
+</head>
+<body>
+<div class="item5"></div>
+<div class="item4"></div>
+<div class="item3">
+  <span></span>
+</div>
+<div class="item2"></div>
+<div class="item1"></div>
+
+<script>
+var ele = document.createElement('div')
+ele.className = 'first second'
+
+document.body.insertBefore(ele, document.body.children[0])
+
+</script>
+</body>
+</html>

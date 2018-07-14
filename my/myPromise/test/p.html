@@ -14,7 +14,7 @@ Promise 同浏览器接口，控制台输出。
   var p = new Promise(function(resolve, reject){
     setTimeout(function (){
       resolve(1);
-    }, 100)
+    }, 1000)
 
   })
     .then(function(data){
@@ -30,7 +30,7 @@ Promise 同浏览器接口，控制台输出。
       console.log(data)
       throw 2;
     })
-//  console.log(p)
+  console.log(p)
 </script>
 </body>
 </html>

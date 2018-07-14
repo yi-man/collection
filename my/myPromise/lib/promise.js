@@ -1,7 +1,9 @@
+let count = 0
 function Promise(resolver){
     this.status = "pending";
     this.value = null;
     this.handlers = [];
+    this.cid = ++count;
     this._doPromise.call(this, resolver);
 }
 

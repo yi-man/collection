@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+  var obj={}
+  var arr=['a','b','c','d']
+
+  // var count = 0;
+  // var temp = obj
+  // while (count < arr.length) {
+  //   const item = arr[count]
+  //   temp[item] = {}
+  //   temp = temp[item]
+  //   count++
+  // }
+
+
+  let temp = obj
+  arr.forEach((item, index)=>{
+    temp[item] = {}
+
+    if (index === 0) {
+      temp[item].root = true
+    }
+
+    if (index === arr.length - 1) {
+      temp[item].leaf = true
+    }
+
+    temp = temp[item]
+  })
+
+
+  console.log(obj)
+
+  // arr.reduce((item1,item2)=>{
+  //   if (typeof item1 ==)
+  //   if(obj[item1]){
+  //     return obj[item]
+  //   }else{
+  //     obj[item]={};
+  //     return obj[item]
+  //   }
+  // })
+  
+  </script>
+</body>
+</html>

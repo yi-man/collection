@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sort</title>
+</head>
+<body>
+类似插入排序
+<br>
+[4, 2, -10, -1999, 499, 20]
+<br>
+[-1999, -10, 2, 4, 20, 499]
+<script>
+  //比较数字用 a-b ，否则可能出错
+  var arr = [4, 2, -10, -1999, 499, 20]
+
+  arr.sort((a, b) => {
+    console.log(`a是${a}\n`)
+    console.log(`b是${b}\n`)
+
+    console.log('\n\n')
+    return a - b
+  })
+</script>
+</body>
+</html>

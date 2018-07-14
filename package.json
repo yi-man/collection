@@ -1,0 +1,40 @@
+{
+  "name": "collection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "webpack": "webpack --watch --config webpack/webpack.config.js",
+    "webpack1": "webpack --watch --config webpack.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xxwade/collection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xxwade/collection/issues"
+  },
+  "homepage": "https://github.com/xxwade/collection#readme",
+  "dependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "jquery": "^3.3.1",
+    "lodash": "^4.16.4",
+    "pn": "^1.1.0",
+    "puppeteer": "^1.2.0",
+    "rxjs": "^6.2.1",
+    "svg2png": "^4.1.1"
+  },
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^2.0.0",
+    "style-loader": "^0.13.1"
+  }
+}

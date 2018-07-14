@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  let obj1= {
+    a () {
+      obj2.b()
+      console.log('obj1.a')
+    }
+  }
+
+  let obj2 = {
+    b () {
+      console.log('obj2.b')
+    },
+    c () {
+      obj1.a()
+    }
+  }
+
+</script>
+
+</body>
+</html>

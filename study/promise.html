@@ -8,17 +8,17 @@
 <script>
 
   var url = 'http://local.collection.com/Mobile2/Public/monthActivityBanner'
-  var pro = new Promise((resolve, reject)=>{
-                fetch(url).then((response)=>response.json()).then((responseData)=>{
-                  resolve(responseData)
-                }).catch((error)=>{
-                  reject(error)
-                })
-             }).then((responseData)=>{
+  var pro = new Promise((resolve, reject) => {
+    fetch(url).then((response) => response.json()).then((responseData) => {
+      resolve(responseData)
+    }).catch((error) => {
+      reject(error)
+    })
+  }).then((responseData) => {
     console.log(responseData)
-  this.setState({
-    loadingPage: responseData.data[0].img.attach.url
-  })
+    this.setState({
+      loadingPage: responseData.data[0].img.attach.url
+    })
   })
 
 
