@@ -8,59 +8,30 @@
 
 <script src="../compose.js"></script>
 <script>
-//  var count = 0
-//  function next1 () {
-//    console.log(++count)
-//  }
-//
-//    const a = (cb) => next => {
-//      console.log('a1')
-//      let result = next()
-//      console.log('a2')
-//      return result
-//    }
-//
-//    const b = (cb) => next => {
-//      console.log('b1')
-//      let result = next()
-//      console.log('b2')
-//      return result
-//
-//    }
-//
-//  const c = (cb) => next => {
-//      console.log('c1')
-//      let result = next()
-//      console.log('c2')
-//      return result
-//  }
-//
-//  let funs = [a, b, c]
-//
-//
-//  function cb(){console.log('cb')}
-//  function init(){
-//    let c=100
-//    console.log('init'+ c++)
-//    return function(){
-//      console.log('init'+ c++)
-//    }
-//  }
-//
-//  let chain = funs.map(fun => fun(cb))
+function a (count) {
+  console.log('a:   ', count)
+  return count+1
+}
 
-//compose(...chain)(init)
+function b (count) {
+  console.log('b:   ', count)
+  return count+1
+}
+
+function c (count) {
+  console.log('c:   ', count)
+  return count+1
+}
+
+function next (count) {
+  console.log('next:   ', count)
+  return count+1
+}
 
 
-
-function a(){return function(){console.log('a')}}
-function b(){return function(){console.log('b')}}
-function c(){return function(){console.log('c')}}
-function next1(){console.log('next1')}
-
-
-   a(b(c))  //c=>b=>a
-  compose(a, b, c)(next1)
+  //  a(b(c(22)))  //c=>b=>a
+  var result = compose(a, b, c)(111)
+  console.log(result)
 </script>
 </body>
 </html>

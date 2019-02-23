@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "tutorial"
+  ],
+  "rules": {
+    "youzan/wsc-standard-words": 2
+  }
+}

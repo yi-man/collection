@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>1 无try catch的情况耗时</title>
+    <script>
+        !function() {
+            //无try catch的情况耗时
+            var t = new Date();
+
+            //耗时代码开始
+            for (var i = 0; i < 100000000; i++) {
+                var p = i % 2;
+            }
+            //耗时代码结束
+            document.write('1:' + (new Date() - t));
+        }();
+    </script>
+
+    <script>
+    !function() {
+
+    //在 try 中内联代码的耗时情况
+    var t = new Date();
+    try{
+        //耗时代码开始
+        for (var i = 0; i < 100000000; i++) {
+            var p = i % 2;
+        }
+        //耗时代码结束
+        throw new Error();
+    }catch(e){
+
+    }
+    document.write('2:' + (new Date() - t));
+    }();
+</script>
+
+<script>
+    !function() {
+        function run(){
+            //耗时代码开始
+            for (var i = 0; i < 100000000; i++) {
+                var p = i % 2;
+            }
+            //耗时代码结束
+        }
+        //在 try 中内联代码的耗时情况
+        var t = new Date();
+        try{
+            run();
+            throw new Error();
+        }catch(e){
+
+        }
+        document.write('3:' + (new Date() - t));
+    }();
+</script>
+
+<script>
+  !function() {
+     //无 try catch 的情况耗时
+     var t = new Date();
+
+     //耗时代码开始
+     for (var i = 0;  i < 100000000;  i++) {
+         var p = i % 2;
+     }
+     //耗时代码结束
+     document.write('100:' + (new Date() - t));
+     try{
+     }catch(e){
+
+     }
+ }();
+
+</script>
+
+<script>
+  !function() {
+     //无 try catch 的情况耗时
+     var t = new Date();
+
+     //耗时代码开始
+     for (var i = 0;  i < 100000000;  i++) {
+         var p = i % 2;
+     }
+     //耗时代码结束
+     document.write('101:' + (new Date() - t));
+
+ }();
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

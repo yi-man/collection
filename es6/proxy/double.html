@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>double proxy</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      a: 'a'
+    }
+
+    var proxy1 = new Proxy(obj, {
+      get(target, key, receiver) {
+        return 'proxy1' + Reflect.get(target, key, receiver)
+      },
+      set (target, key, value, receiver) {
+        return Reflect.set(target, key, value, receiver)
+      }
+    })
+
+    console.log(proxy1.a)
+
+    var proxy2 = new Proxy(proxy1, {
+      get(target, name) {
+        return 'proxy2' + target[name]
+      },
+      set (target, key, value, receiver) {
+        return Reflect.set(target, key, value, receiver)
+      }
+    })
+
+    console.log(proxy2.a)
+
+    proxy2.a='b'
+    console.log(proxy2.a)
+
+  </script>
+</body>
+
+</html>

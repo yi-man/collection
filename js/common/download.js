@@ -21,3 +21,23 @@ function downloadFile(fileName, contentOrPath){
 
   aLink.dispatchEvent(evt);
 }
+
+
+function convertCanvasToImage(canvas) {
+  var image = new Image();
+  var content = canvas.toDataURL("image/png");
+  content = content.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+
+  image.src = content
+
+  // document.body.appendChild(image);
+
+  var a = document.createElement('a');
+  a.href = image.src
+  a.download = "output.png";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  return image;
+}
