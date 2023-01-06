@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/xxwade/collection#readme",
   "dependencies": {
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
     "jquery": "^3.3.1",
     "lodash": "^4.16.4",
     "pn": "^1.1.0",
@@ -32,7 +32,7 @@
     "svg2png": "^4.1.1"
   },
   "devDependencies": {
-    "css-loader": "^0.25.0",
+    "css-loader": "^6.7.3",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-uglify": "^2.0.0",
